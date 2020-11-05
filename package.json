@@ -10,6 +10,7 @@
     "build": "webpack"
   },
   "dependencies": {
+    "pixi-svg": "^2.2.0",
     "pixi-viewport": "^4.17.1",
     "pixi.js": "^5.3.3"
   },
