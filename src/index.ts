@@ -6,6 +6,7 @@ import "./styles.css"
 
 export const app = new PIXI.Application({
   resizeTo: window,
+  antialias: true,
 })
 document.body.appendChild(app.view)
 addFpsCounter(app)
@@ -35,15 +36,13 @@ function* getHexagonGrid(cols: number, rows: number) {
       const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon")
 
       polygon.style.fill = "blue"
-      polygon.style.stroke = "red"
-      polygon.style.strokeWidth = "2px"
       polygon.setAttribute("points", getHexagonPoints(radius))
 
       const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
       svg.appendChild(polygon)
       const hexagon = new SVG(svg)
 
-      const offset = (Math.sqrt(3.2) * radius) / 2
+      const offset = (Math.sqrt(3) * radius) / 2
 
       hexagon.position.x = 40 + offset * col * 2
       hexagon.position.y = 40 + offset * row * Math.sqrt(3)
@@ -58,10 +57,6 @@ function* getHexagonGrid(cols: number, rows: number) {
 }
 
 for (const hexagon of getHexagonGrid(10, 10)) {
-  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
-  const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon")
-  svg.appendChild(polygon)
-
   hexagon.interactive = true
   hexagon.addListener("pointerover", () => {
     hexagon.tint = 0xffffcc
