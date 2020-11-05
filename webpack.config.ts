@@ -3,6 +3,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin"
 import * as packageConfig from "./package.json"
 
 export default (): Configuration => ({
+  devtool: "cheap-source-map",
   module: {
     rules: [
       {
