@@ -18,7 +18,7 @@ viewport.drag().pinch().wheel().decelerate({ friction: 0.7 })
 function getHexagonPoints(radius: number) {
   const points = []
 
-  for (var theta = 0; theta < Math.PI * 2; theta += Math.PI / 3) {
+  for (let theta = 0; theta <= Math.PI * 2; theta += (Math.PI / 180) * 60) {
     const pointX = radius * Math.sin(theta)
     const pointY = radius * Math.cos(theta)
 
@@ -35,7 +35,9 @@ function* getHexagonGrid(cols: number, rows: number) {
 
       const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon")
 
-      polygon.style.fill = "blue"
+      polygon.style.fill = "cyan"
+      polygon.style.stroke = "green"
+      polygon.style.strokeWidth = "8px"
       polygon.setAttribute("points", getHexagonPoints(radius))
 
       const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
@@ -59,10 +61,12 @@ function* getHexagonGrid(cols: number, rows: number) {
 for (const hexagon of getHexagonGrid(10, 10)) {
   hexagon.interactive = true
   hexagon.addListener("pointerover", () => {
-    hexagon.tint = 0xffffcc
+    hexagon.tint = 0x00ffcc
+    hexagon.scale.set(0.85)
   })
   hexagon.addListener("pointerout", () => {
     hexagon.tint = 0xffffff
+    hexagon.scale.set(1)
   })
 
   viewport.addChild(hexagon)
