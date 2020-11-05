@@ -1,6 +1,8 @@
-const name = "Kenobi"
-const title = "general"
+import * as PIXI from "pixi.js"
+import "./styles.css"
 
-console.log(`Hello there, ${title} ${name}.`)
+const app = new PIXI.Application({
+  resizeTo: window,
+})
 
-export { name }
+document.body.appendChild(app.view)
